@@ -1,0 +1,42 @@
+<!-- <ul class="list-group mt-3">
+  <li *ngFor="let task of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+    <a href="#">{{task.title}}</a>
+    <span class="dueDate">{{task.dueDate}}</span>
+    <span class="priority">{{task.resolvedAt}}</span>
+    <span class="status">{{task.priority}}</span>
+    <span class="status">{{task.status}}</span>
+    <i class="fa fa-remove"></i>
+  </li>  
+</ul> -->
+
+<table class="table table-striped mt-5" *ngIf="loaded && tasks.length > 0">
+  <thead>
+    <tr>
+      <th>Task Title</th>
+      <th>Due Date</th>
+      <th>Resolved At</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks" [class.table-primary]="selectedTask === task">
+      <td><a href="#" (click)="onSelect(task)"><span class="dueDate">{{task.title}}</span></a></td>
+      <td><span class="dueDate">{{task.dueDate}}</span></td>
+      <td><span class="priority">{{task.resolvedAt}}</span></td>
+      <td><span class="status">{{task.priority}}</span></td>
+      <td><span class="status">{{task.status}}</span></td>
+      <td><span class="status">{{task.description}}</span></td>
+      <td><span><i (click)="onDelete(task)" class="fa fa-remove"></i></span></td>        
+    </tr>     
+  </tbody>
+</table>
+
+<div *ngIf="loaded && tasks.length == 0" class="mt-5">
+  <h5>You have no tasks. Click above on add a task to add it.</h5>
+</div>
+
+<div *ngIf="!loaded">
+  <h5>Laoding...</h5>
+</div>
